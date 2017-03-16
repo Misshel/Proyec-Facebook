@@ -20,25 +20,55 @@ function validateForm(){
   if(usuario == undefined ){
     msm.innerHTML= "El campo de usuario no puede estar en blanco";
   }
-for(var i=0;i<cuentas.length;i++){
-  if(correo.test(usuario) !== cuentas[i] && contraseña.test(password) !== cuentas[i]){
-    alert("Por favor ingrese el formato valido.");
-  } else{validar();}
-}
+  //
+  // if(correo.test(usuario) !== cuentas.usuario || contraseña.test(password) !== cuentas.password){
+  //   alert("Por favor ingrese el formato valido.");
+  // } else{validar();}
+  var cont =0;
+  cuentas.forEach(function (e){
+                  if(usuario == e.usuario && password == e.password){
+              cont ++;
+                  }
+                  });
+      if(cont == 1){
+          window.locationf="index_muro";
+
+      }
 
 }
+//
+// function validar(){
+//   var usuario= document.getElementById("usuario").value;
+//   var password= document.getElementById("password").value;
+//   var newUsuario= {usuario:usuario,password:password};
+//
+//           for(var i =0;i<cuentas.length;i++){
+//             if(newUsuario !== cuentas[i]){
+//               alert("Por favor ingresar cuenta valida");
+//             }else{
+//
+//             }
+//
+//           }
+// }
 
-function validar(){
-  var usuario= document.getElementById("usuario").value;
-  var password= document.getElementById("password").value;
-  var newUsuario= {usuario:usuario,password:password};
 
-          for(var i =0;i<cuentas.length;i++){
-            if(newUsuario !== cuentas[i]){
-              alert("Por favor ingresar cuenta valida");
-            }else{
-              return true;
-            }
-
-          }
+//para los post
+function createPost(texto) {
+  var post = document.createElement('div');
+  var texto = document.createElement('p');
+  texto.innerHTML = texto;
+  var eliminar = document.createElement('a');
+  eliminar.innerHTML = "Eliminar"
+  eliminar.addEventListener('click',function(e) {
+    e.preventDefault();
+    var postParent = e.target.parent; // Devuelve el padre
+  });
+  post.appendChild(texto);
+  post.appendChild(eliminar);
+  return post;
 }
+
+
+var resultado = document.getElementById('resultado');
+resultado.appendChild(createPost("Gian"));
